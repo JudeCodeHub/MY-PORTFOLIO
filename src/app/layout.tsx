@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${spaceGrotesk.className}`}>
-      <body>
+      <body className="relative">
         <SplashCursor />
         <Toaster />
         <ChatWidget />
