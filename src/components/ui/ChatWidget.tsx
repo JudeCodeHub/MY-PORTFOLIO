@@ -155,6 +155,7 @@ export default function ChatWidget() {
       <button
         ref={fabRef}
         onClick={() => setIsOpen((v) => !v)}
+        suppressHydrationWarning
         aria-label={isOpen ? "Close chat" : "Open chat"}
         className={cn(
           "fixed bottom-6 right-6 md:bottom-20 md:right-22 z-60 w-14 h-14 rounded-full flex items-center justify-center",

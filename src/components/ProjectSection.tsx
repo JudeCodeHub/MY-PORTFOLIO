@@ -484,9 +484,9 @@ export const ProjectsSection = () => {
         whileInView="visible"
         viewport={{ once: false, margin: "0px" }}
         variants={fadeUp(0.15)}
-        className="z-20 mt-1 mb-2 sm:mb-3 w-fit max-w-full px-4"
+        className="z-20 mt-1 mb-2 sm:mb-3 w-fit max-w-full px-3 sm:px-4"
       >
-        <div className="flex items-center justify-center gap-1 sm:gap-1.5 p-1 rounded-xl bg-slate-900/85 dark:bg-[#0d0d0d]/90 backdrop-blur-2xl border border-slate-700/60 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden whitespace-nowrap">
+        <div className="flex items-center justify-start gap-0.5 sm:gap-1.5 p-1 max-w-full rounded-xl bg-slate-900/85 dark:bg-[#0d0d0d]/90 backdrop-blur-2xl border border-slate-700/60 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden whitespace-nowrap">
           {CATEGORY_TABS.map((tab) => {
             const isSelected = activeCategory === tab.id;
             const Icon = tab.icon;
@@ -494,7 +494,12 @@ export const ProjectsSection = () => {
               <button
                 key={tab.id}
                 onClick={() => handleCategoryChange(tab.id)}
-                className={`group relative shrink-0 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors duration-200 flex items-center gap-2 cursor-pointer select-none ${
+                ref={(el) => {
+                  const bar = el?.parentElement;
+                  if (el && bar && isSelected)
+                    bar.scrollTo({ left: el.offsetLeft - (bar.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+                }}
+                className={`group relative shrink-0 px-2.5 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono font-medium transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none ${
                   isSelected
                     ? "text-white font-semibold"
                     : "text-slate-400 dark:text-white/60 hover:text-white hover:bg-white/5"
